@@ -1,0 +1,249 @@
+/* ==========================================================================
+   PUBG MOBILE AAA TACTICAL STYLING
+   ========================================================================== */
+
+@import './ui/lobby.css';
+@import './ui/controls.css';
+@import './ui/hud.css';
+
+:root {
+  --color-gold: #f5a623;
+  --color-gold-bright: #ffcc00;
+  --color-gold-glow: rgba(245, 166, 35, 0.4);
+  --color-dark-bg: #0a0d14;
+  --color-panel: rgba(13, 18, 25, 0.88);
+  --color-panel-border: rgba(245, 166, 35, 0.35);
+  --color-panel-dark: rgba(7, 10, 15, 0.95);
+  --color-blue-zone: #00e5ff;
+  --color-red-danger: #ff3344;
+  --color-health-green: #00ff88;
+  --color-text-white: #ffffff;
+  --color-text-dim: #9aa7b5;
+
+  --font-military: 'Teko', sans-serif;
+  --font-hud: 'Rajdhani', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-dark-bg);
+  font-family: var(--font-hud);
+  color: var(--color-text-white);
+}
+
+#game-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#webgl-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#ui-root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Enable pointer events on interactive UI elements */
+#ui-root > * {
+  pointer-events: auto;
+}
+
+/* Portrait Warning */
+.orientation-warning {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: radial-gradient(circle, #1a2332 0%, #080c14 100%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+}
+
+@media screen and (orientation: portrait) {
+  .orientation-warning {
+    display: flex;
+  }
+}
+
+.warning-box {
+  background: rgba(15, 20, 30, 0.92);
+  border: 2px solid var(--color-gold);
+  border-radius: 12px;
+  padding: 32px 28px;
+  box-shadow: 0 0 30px var(--color-gold-glow);
+  max-width: 380px;
+}
+
+.rotate-phone-icon {
+  font-size: 54px;
+  margin-bottom: 16px;
+  animation: pulse-rotate 2s infinite ease-in-out;
+}
+
+@keyframes pulse-rotate {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(90deg); }
+}
+
+.warning-box h2 {
+  font-family: var(--font-military);
+  font-size: 34px;
+  letter-spacing: 2px;
+  color: var(--color-gold-bright);
+  margin-bottom: 8px;
+}
+
+.warning-box p {
+  color: var(--color-text-dim);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* Base Tactical Button */
+.tac-btn {
+  background: linear-gradient(135deg, rgba(30, 38, 48, 0.9) 0%, rgba(15, 20, 28, 0.95) 100%);
+  border: 1px solid var(--color-panel-border);
+  color: var(--color-text-white);
+  font-family: var(--font-military);
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.tac-btn:active {
+  transform: scale(0.96);
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.3) 0%, rgba(15, 20, 28, 0.95) 100%);
+  border-color: var(--color-gold-bright);
+}
+
+.tac-btn.gold {
+  background: linear-gradient(135deg, #f5a623 0%, #b87705 100%);
+  color: #000;
+  font-weight: 700;
+  border-color: #ffd000;
+  box-shadow: 0 0 16px var(--color-gold-glow);
+}
+
+.tac-btn.gold:active {
+  background: #ffcc00;
+}
+
+.tac-btn.danger {
+  background: linear-gradient(135deg, #d32f2f 0%, #7b1fa2 100%);
+  border-color: #ff5252;
+}
+
+.tac-btn.small {
+  font-size: 16px;
+  padding: 6px 14px;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+
+/* Modals */
+.tac-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 7, 12, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.tac-modal {
+  background: var(--color-panel-dark);
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 20px var(--color-gold-glow);
+  width: 90%;
+  max-width: 650px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+}
+
+.tac-modal-header {
+  padding: 16px 24px;
+  background: linear-gradient(90deg, rgba(245, 166, 35, 0.25) 0%, rgba(20, 26, 36, 0) 100%);
+  border-bottom: 1px solid rgba(245, 166, 35, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tac-modal-title {
+  font-family: var(--font-military);
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: var(--color-gold-bright);
+}
+
+.tac-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--color-text-dim);
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.tac-modal-close:hover {
+  color: var(--color-gold-bright);
+}
+
+.tac-modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.tac-modal-footer {
+  padding: 14px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: rgba(10, 14, 20, 0.5);
+}

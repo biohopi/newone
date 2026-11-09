@@ -1,0 +1,368 @@
+/* ==========================================================================
+   IN-GAME HUD, COMPASS & MINIMAP STYLES
+   ========================================================================== */
+
+.match-hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+}
+
+/* Enable pointer events on HUD buttons and interactive elements */
+.match-hud .interactive {
+  pointer-events: auto;
+}
+
+/* Top Compass Tape */
+.compass-container {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 36px;
+  background: linear-gradient(180deg, rgba(8, 12, 18, 0.85) 0%, rgba(8, 12, 18, 0.5) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.compass-center-marker {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: var(--color-gold-bright);
+  z-index: 3;
+}
+
+.compass-tape {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: transform 0.05s linear;
+  white-space: nowrap;
+}
+
+.compass-degree {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+.compass-degree.cardinal {
+  color: var(--color-gold-bright);
+  font-family: var(--font-military);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Minimap Radar Box */
+.minimap-container {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  background: rgba(10, 15, 22, 0.85);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 0 10px var(--color-gold-glow);
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+#minimap-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.minimap-zone-info {
+  position: absolute;
+  top: 158px;
+  right: 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-blue-zone);
+  background: rgba(10, 15, 25, 0.8);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+/* Top Match Info & Survivor Count */
+.match-status-bar {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.survivor-badge {
+  background: rgba(15, 22, 32, 0.85);
+  border: 1px solid rgba(245, 166, 35, 0.4);
+  padding: 6px 14px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.survivor-count {
+  font-family: var(--font-military);
+  font-size: 26px;
+  color: var(--color-gold-bright);
+  line-height: 1;
+}
+
+.survivor-label {
+  font-size: 11px;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+}
+
+.kill-counter {
+  background: rgba(15, 22, 32, 0.85);
+  border: 1px solid rgba(255, 51, 68, 0.4);
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-military);
+  font-size: 22px;
+  color: var(--color-red-danger);
+}
+
+.btn-pause-match {
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+}
+
+/* Killfeed Notifications */
+.killfeed-container {
+  position: absolute;
+  top: 60px;
+  left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 320px;
+}
+
+.killfeed-item {
+  background: linear-gradient(90deg, rgba(20, 26, 38, 0.9) 0%, rgba(20, 26, 38, 0) 100%);
+  border-left: 3px solid var(--color-gold);
+  padding: 4px 10px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: fadeInOut 4s forwards ease-in-out;
+}
+
+.killfeed-item.enemy-kill {
+  border-left-color: var(--color-red-danger);
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-10px); }
+  10% { opacity: 1; transform: translateX(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-5px); }
+}
+
+/* Health Bar & Player Squad Widget */
+.player-vital-panel {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vital-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-dim);
+}
+
+.hp-bar-bg {
+  width: 100%;
+  height: 12px;
+  background: rgba(10, 15, 25, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.hp-bar-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #00c853 0%, #00e676 100%);
+  transition: width 0.15s ease-out;
+}
+
+.hp-bar-fill.low {
+  background: linear-gradient(90deg, #d50000 0%, #ff1744 100%);
+  animation: pulseHp 0.8s infinite alternate;
+}
+
+@keyframes pulseHp {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Weapon Quick-Swap Slots (Bottom Center-Right) */
+.weapon-slots-bar {
+  position: absolute;
+  bottom: 40px;
+  right: 250px;
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.weapon-slot-card {
+  width: 120px;
+  background: rgba(15, 22, 32, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 10px;
+  cursor: pointer;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition: all 0.15s ease;
+}
+
+.weapon-slot-card.active {
+  border-color: var(--color-gold-bright);
+  background: linear-gradient(135deg, rgba(40, 55, 80, 0.9) 0%, rgba(15, 22, 32, 0.95) 100%);
+  box-shadow: 0 0 14px var(--color-gold-glow);
+}
+
+.weapon-slot-name {
+  font-family: var(--font-military);
+  font-size: 18px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.weapon-slot-ammo {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-gold-bright);
+  margin-top: 2px;
+}
+
+/* Backpack Inventory Drawer */
+.backpack-drawer {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 280px;
+  max-height: 70vh;
+  background: var(--color-panel-dark);
+  border: 1px solid var(--color-gold);
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  pointer-events: auto;
+  display: none;
+  flex-direction: column;
+}
+
+.backpack-drawer.open {
+  display: flex;
+}
+
+.backpack-header {
+  padding: 10px 16px;
+  background: rgba(245, 166, 35, 0.2);
+  border-bottom: 1px solid rgba(245, 166, 35, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-military);
+  font-size: 20px;
+}
+
+.backpack-list {
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.backpack-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(25, 35, 50, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* ADS Tactical Scope Reticle Overlay */
+.scope-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 25;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.scope-overlay.active {
+  display: flex;
+}
+
+.scope-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 35%, rgba(0, 0, 0, 0.95) 70%, #000 100%);
+}
+
+.scope-crosshair {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Damage Vignette Flashes */
+.damage-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 22;
+  box-shadow: inset 0 0 100px rgba(255, 0, 0, 0);
+  transition: box-shadow 0.1s ease-out;
+}
+
+.damage-vignette.hit {
+  box-shadow: inset 0 0 120px rgba(255, 0, 0, 0.85);
+}

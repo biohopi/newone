@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0a0d12" />
+  <title>PUBG MOBILE - Tactical 3D Web Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- Orientation Lock Warning for Portrait Mode -->
+  <div id="orientation-warning" class="orientation-warning">
+    <div class="warning-box">
+      <div class="rotate-phone-icon">📱 ➔ 📲</div>
+      <h2>PLEASE ROTATE DEVICE</h2>
+      <p>PUBG Mobile Web requires Landscape Orientation for tactical combat controls.</p>
+    </div>
+  </div>
+
+  <!-- Main WebGL 3D Canvas Container -->
+  <div id="game-container">
+    <canvas id="webgl-canvas"></canvas>
+  </div>
+
+  <!-- UI Root Layer -->
+  <div id="ui-root"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

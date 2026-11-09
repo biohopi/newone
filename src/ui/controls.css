@@ -1,0 +1,172 @@
+/* ==========================================================================
+   TOUCH JOYSTICK & HUD CONTROLS STYLES
+   ========================================================================== */
+
+/* Fixed Virtual Joystick Container */
+.joystick-zone {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  width: 140px;
+  height: 140px;
+  z-index: 50;
+  touch-action: none;
+  pointer-events: auto;
+}
+
+.joystick-base {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20, 30, 45, 0.5) 0%, rgba(10, 15, 25, 0.8) 100%);
+  border: 2px solid rgba(245, 166, 35, 0.4);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(245, 166, 35, 0.2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.joystick-thumb {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f5a623 0%, #a76e0a 100%);
+  border: 2px solid #ffcc00;
+  box-shadow: 0 0 15px var(--color-gold-glow);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease-out;
+  pointer-events: none;
+}
+
+.sprint-lock-indicator {
+  position: absolute;
+  top: -46px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(14, 20, 30, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-text-dim);
+  font-family: var(--font-military);
+  font-size: 14px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.sprint-lock-indicator.active {
+  background: var(--color-gold);
+  color: #000;
+  font-weight: 700;
+  border-color: #ffd000;
+  box-shadow: 0 0 12px var(--color-gold-glow);
+}
+
+/* Touch Aim Area (Right half of the screen) */
+.touch-aim-zone {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 65%;
+  height: 100%;
+  z-index: 15;
+  touch-action: none;
+  pointer-events: auto;
+}
+
+/* Draggable HUD Action Button Base */
+.hud-btn {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(25, 35, 50, 0.75) 0%, rgba(10, 14, 22, 0.9) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+  pointer-events: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.05s ease, border-color 0.1s ease;
+}
+
+.hud-btn:active, .hud-btn.pressed {
+  transform: scale(0.92);
+  border-color: var(--color-gold-bright);
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.4) 0%, rgba(10, 14, 22, 0.9) 100%);
+}
+
+.hud-btn .btn-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.hud-btn .btn-label {
+  font-family: var(--font-military);
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+
+/* Customizer Layout Overlay */
+.layout-customizer-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  background: rgba(8, 12, 18, 0.7);
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.customizer-header {
+  padding: 14px 28px;
+  background: rgba(10, 15, 22, 0.9);
+  border-bottom: 2px solid var(--color-gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customizer-title {
+  font-family: var(--font-military);
+  font-size: 26px;
+  color: var(--color-gold-bright);
+  letter-spacing: 2px;
+}
+
+.customizer-hints {
+  font-size: 14px;
+  color: var(--color-text-dim);
+}
+
+.customizer-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.customizer-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(245, 166, 35, 0.08) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(245, 166, 35, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.customizer-dragging {
+  border-color: var(--color-gold-bright) !important;
+  box-shadow: 0 0 25px var(--color-gold-glow) !important;
+  outline: 2px dashed #fff;
+}
